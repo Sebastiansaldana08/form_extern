@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulario de Trámites - Pregrado</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="form-page-container">
+    <h1>Formulario de Trámites - Pregrado</h1>
+    <div class="form-container">
+      <form id="form-combinado" enctype="multipart/form-data" onsubmit="return addTipoTramiteToAsunto()" action="/submit" method="POST">
+        <input type="hidden" id="correo-estudiante" name="correo-estudiante" value="<%= email %>">
+
+        <h2>Formulario de Trámites</h2>
+
+        <label for="tipo-tramite">Tipo de trámite a solicitar:</label>
+        <select id="tipo-tramite" name="tipo-tramite" required>
+          <option value="" disabled selected>Seleccione un tipo de trámite</option>
+          <option value="RESERVA">Reserva de Matrícula</option>
+          <option value="RENUNCIA">Renuncia a la carrera</option>
+          <option value="ADELANTO">Adelanto de curso</option>
+          <option value="AMP.CRD">Ampliación de creditaje</option>
+          <option value="CUPO">Autorización de cupo</option>
+          <option value="MOD.MATR">Modificación de matrícula</option>
+          <option value="EXTRAORDINARIA">Matrícula extraordinaria</option>
+        </select>
+
+        <label for="documento">Número de documento de identidad:</label>
+        <input type="text" id="documento" name="documento" required>
+
+        <label for="nombres">Nombres:</label>
+        <input type="text" id="nombres" name="nombres" required>
+
+        <label for="apellidos">Apellidos:</label>
+        <input type="text" id="apellidos" name="apellidos" required>
+
+        <label for="celular">Celular:</label>
+        <input type="tel" id="celular" name="celular" required>
+
+        <label for="correo-alternativo">Correo electrónico alternativo:</label>
+        <input type="email" id="correo-alternativo" name="correo-alternativo" required>
+
+        <label for="facultad-integrada">Elige tu facultad integrada:</label>
+        <select id="facultad-integrada" name="facultad-integrada" onchange="updateFacultades()" required>
+          <option value="" disabled selected>Seleccione una facultad integrada</option>
+          <option value="FAMED-FAEST-FAENF">FAMED-FAEST-FAENF</option>
+          <option value="UFBI">UFBI</option>
+          <option value="FASPA-FAPSI-FAEDU">FASPA-FAPSI-FAEDU</option>
+          <option value="FACIE-FAVEZ">FACIE-FAVEZ</option>
+        </select>
+
+        <label for="facultad">Facultad:</label>
+        <select id="facultad" name="facultad" required></select>
+
+        <label for="carrera">Elige tu carrera:</label>
+        <select id="carrera" name="carrera" required></select>
+
+        <label for="anio-estudio">Elige tu año de estudio:</label>
+        <select id="anio-estudio" name="anio-estudio">
+          <option value="" disabled selected>Selecciona tu año de estudio:</option>
+          <option value="1">1er año</option>
+          <option value="2">2do año</option>
+          <option value="3">3er año</option>
+          <option value="4">4to año</option>
+          <option value="5">5to año</option>
+          <option value="6">6to año</option>
+        </select>
+
+        <label for="descripcion">Descripción del caso:</label>
+        <textarea id="descripcion" name="descripcion" rows="4" maxlength="500"></textarea>
+
+        <label for="archivo1">Adjuntar archivo 1 (imagen):</label>
+        <input type="file" id="archivo1" name="archivo1" accept="image/*" max-size="10485760">
+
+        <label for="archivo2">Adjuntar archivo 2 (PDF):</label>
+        <input type="file" id="archivo2" name="archivo2" accept="application/pdf" max-size="10485760">
+
+        <h2>Envío de correo electrónico</h2>
+
+        <label for="asunto">Asunto:</label>
+        <input type="text" id="asunto" name="asunto" required>
+
+        <label for="descripcion-correo">Descripción del mensaje:</label>
+        <textarea id="descripcion-correo" name="descripcion-correo" rows="4" maxlength="500"></textarea>
+
+        <label for="correo-archivo1">Adjuntar archivo 1 (imagen):</label>
+        <input type="file" id="correo-archivo1" name="correo-archivo1" accept="image/*" max-size="10485760">
+
+        <label for="correo-archivo2">Adjuntar archivo 2 (PDF):</label>
+        <input type="file" id="correo-archivo2" name="correo-archivo2" accept="application/pdf" max-size="10485760">
+
+        <button type="submit">Enviar</button>
+      </form>
+    </div>
+
+    <div id="successMessage" style="display:none; color: green;">
+      Correo enviado exitosamente!
+      <button onclick="registerNewRequest()">Registrar nuevo trámite</button>
+    </div>
+
+    <div id="errorMessage" style="display:none; color: red;">
+      Error al enviar el correo.
+    </div>
+  </div>
+  <script src="scripts.js"></script>
+</body>
+</html>
+
