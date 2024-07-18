@@ -8,19 +8,21 @@ const upload = multer();
 const app = express();
 const port = 3001;
 
-const GOOGLE_CLIENT_ID = '634494971392-8pkieltc9jitmsnob37b930oqrhbqgia.apps.googleusercontent.com';
-const GOOGLE_CLIENT_SECRET = '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';
+require('dotenv').config(); // Cargar variables de entorno desde .env
+
+const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
+const GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET;
 const GOOGLE_REDIRECT_URL = 'http://localhost:3001/auth/google/callback';
 
 let userProfile;
 let oauth2Client;
 
 const pool = new Pool({
-  user: 'postgres',
-  host: '172.14.0.220',
-  database: 'bugtracker',
-  password: '123654',
-  port: 5432,
+  user: process.env.PG_USER,
+  host: process.env.PG_HOST,
+  database: process.env.PG_DATABASE,
+  password: process.env.PG_PASSWORD,
+  port: process.env.PG_PORT,
 });
 
 app.use(express.static('public'));
