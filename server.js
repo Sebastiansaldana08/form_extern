@@ -17,6 +17,9 @@ const GOOGLE_REDIRECT_URL = process.env.NODE_ENV === 'production'
 let userProfile;
 let oauth2Client;
 
+// Servir archivos estáticos desde la carpeta 'public'
+app.use('/public', express.static(path.join(__dirname, 'public')));
+
 // Configuración de la base de datos PostgreSQL
 const pool = new Pool({
   user: 'postgres',
