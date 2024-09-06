@@ -92,6 +92,11 @@ app.get('/form', (req, res) => {
   res.render('pages/form', { email: req.user.profile.emails[0].value });
 });
 
+// RUTA PARA LA PÁGINA PRINCIPAL
+app.get('/', (req, res) => {
+  res.sendFile(__dirname + '/public/index.html');
+});
+
 app.post('/submit', upload.fields([{ name: 'archivo1' }, { name: 'archivo2' }, { name: 'correo-archivo1' }, { name: 'correo-archivo2' }]), async (req, res) => {
   const { 'tipo-tramite': tipoTramite, documento, nombres, apellidos, celular, 'correo-alternativo': correoAlternativo, 'facultad-integrada': facultadIntegrada, facultad, carrera, 'anio-estudio': anioEstudio, descripcion, asunto, 'descripcion-correo': descripcionCorreo } = req.body;
 
@@ -203,6 +208,7 @@ app.post('/submit', upload.fields([{ name: 'archivo1' }, { name: 'archivo2' }, {
   });
 });
 
+// Inicia el servidor en el puerto especificado
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}/`);
 });
