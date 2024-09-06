@@ -4,6 +4,7 @@ const { Pool } = require('pg');
 const session = require('express-session');
 const passport = require('passport');
 const { google } = require('googleapis');
+const path = require('path');
 const upload = multer();
 const app = express();
 const port = 3001;
@@ -26,7 +27,7 @@ const pool = new Pool({
   port: 5432,
 });
 
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static('public'));
 app.set('view engine', 'ejs');
 
 app.use(express.urlencoded({ extended: true }));
@@ -94,7 +95,7 @@ app.get('/form', (req, res) => {
 
 // RUTA PARA LA PÁGINA PRINCIPAL
 app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/public/index.html');
+  res.sendFile(path.join(__dirname, 'public', 'index.html')); // Usa el módulo path para construir la ruta correctamente
 });
 
 app.post('/submit', upload.fields([{ name: 'archivo1' }, { name: 'archivo2' }, { name: 'correo-archivo1' }, { name: 'correo-archivo2' }]), async (req, res) => {
