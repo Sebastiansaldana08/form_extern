@@ -27,7 +27,8 @@ const pool = new Pool({
   port: 5432,
 });
 
-app.use(express.static('public'));
+// Servir archivos estáticos desde la carpeta 'public'
+app.use(express.static(path.join(__dirname, 'public')));
 app.set('view engine', 'ejs');
 
 app.use(express.urlencoded({ extended: true }));
