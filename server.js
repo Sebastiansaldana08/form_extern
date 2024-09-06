@@ -8,21 +8,22 @@ const upload = multer();
 const app = express();
 const port = 3001;
 
-require('dotenv').config(); // Cargar variables de entorno desde .env
-
-const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
-const GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET;
-const GOOGLE_REDIRECT_URL = 'http://localhost:3001/auth/google/callback';
+const GOOGLE_CLIENT_ID = '634494971392-8pkieltc9jitmsnob37b930oqrhbqgia.apps.googleusercontent.com';
+const GOOGLE_CLIENT_SECRET = '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';
+const GOOGLE_REDIRECT_URL = process.env.NODE_ENV === 'production'
+  ? 'https://form-extern.vercel.app/auth/google/callback'
+  : 'http://localhost:3001/auth/google/callback';
 
 let userProfile;
 let oauth2Client;
 
+// Configuración de la base de datos PostgreSQL
 const pool = new Pool({
-  user: process.env.PG_USER,
-  host: process.env.PG_HOST,
-  database: process.env.PG_DATABASE,
-  password: process.env.PG_PASSWORD,
-  port: process.env.PG_PORT,
+  user: 'postgres',
+  host: 'localhost',
+  database: 'estudiantesdb',
+  password: 'Sebas1011',
+  port: 5432,
 });
 
 app.use(express.static('public'));
