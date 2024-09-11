@@ -9,6 +9,7 @@ h1 {
   text-align: center;
   margin: 20px 0;
   font-size: 24px;
+  color: #c2c2c2;
 }
 
 .login-container {
@@ -17,7 +18,7 @@ h1 {
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background: url('/upch.jpg') no-repeat center center;
+  background: url('/img.png') no-repeat center center;
   background-size: cover;
 }
 
