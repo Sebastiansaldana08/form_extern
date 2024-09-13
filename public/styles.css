@@ -9,7 +9,7 @@ h1 {
   text-align: center;
   margin: 20px 0;
   font-size: 24px;
-  color: #c2c2c2;
+  color: #0b0000;
 }
 
 .login-container {
@@ -22,6 +22,16 @@ h1 {
   background-size: cover;
 }
 
+.form-background {
+  background: rgba(255, 255, 255, 0.7); /* Fondo blanco semi-transparente */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Añade sombra para resaltar */
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+}
+
 .logo {
   width: 100px;
   margin-bottom: 20px;
@@ -30,6 +40,7 @@ h1 {
 .btn-google {
   display: flex;
   align-items: center;
+  justify-content: center;
   padding: 10px 20px;
   background-color: #941a1a;
   color: white;
